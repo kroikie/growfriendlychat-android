@@ -17,6 +17,7 @@ package com.google.firebase.codelab.friendlychat;
 
 import android.util.Log;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -30,5 +31,4 @@ public class MyFirebaseMessagingService {
         Log.d(TAG, "FCM Notification Message: " + remoteMessage.getNotification());
         Log.d(TAG, "FCM Data Message: " + remoteMessage.getData());
     }
-
 }

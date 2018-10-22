@@ -43,6 +43,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.crashlytics.android.Crashlytics;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
@@ -62,6 +63,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.google.firebase.storage.FirebaseStorage;
@@ -283,6 +286,7 @@ public class MainActivity extends AppCompatActivity
                 mFirebaseDatabaseReference.child(MESSAGES_CHILD)
                         .push().setValue(friendlyMessage);
                 mMessageEditText.setText("");
+                logMessageSent();
             }
         });
 
@@ -401,6 +405,7 @@ public class MainActivity extends AppCompatActivity
                                             task.getResult().getMetadata().getPath());
                             mFirebaseDatabaseReference.child(MESSAGES_CHILD).child(key)
                                     .setValue(friendlyMessage);
+                            logMessageSent();
                         } else {
                             Log.w(TAG, "Image upload task was not successful.",
                                     task.getException());
@@ -408,4 +413,8 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
     }
+
+    private void logMessageSent() {
+    }
+
 }
